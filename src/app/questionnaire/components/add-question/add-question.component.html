@@ -1,0 +1,38 @@
+<div class="add-question">
+  <div class="container">
+    <div class="add-question__block">
+      <form [formGroup]="questionForm" class="add-question__form">
+        <input type="text" formControlName="title" class="add-question__title" placeholder="Input your question...">
+        <div class="add-question__type">
+          <div class="add-question__type-block">
+            <input type="radio" formControlName="type" value="single" id="question-type-single">
+            <label for="question-type-single">Single</label>
+          </div>
+          <div class="add-question__type-block">
+            <input type="radio" formControlName="type" value="multiple" id="question-type-multiple">
+            <label for="question-type-multiple">Multiple</label>
+          </div>
+          <div class="add-question__type-block">
+            <input type="radio" formControlName="type" value="open" id="question-type-open">
+            <label for="question-type-open">Open</label>
+          </div>
+        </div>
+        <div *ngIf="questionForm.get('type').value !== 'open'">
+          <div formArrayName="answers" *ngFor="let answer of questionForm.get('answers')['controls']; let i = index;">
+            <div [formGroup]="answer" class="add-question__answers-block">
+              <input type="text" formControlName="text" class="add-question__answer" placeholder="Answer...">
+              <button class="answer__delete-button"
+                      (click)="deleteAnswer(i)"
+                      [disabled]="questionForm.get('answers').value.length <= 2">
+                —
+              </button>
+            </div>
+          </div>
+          <div class="add-question__add-answer" (click)="addNewAnswer()">+ Add new answer</div>
+        </div>
+        <button class="add-question__save-answer" [disabled]="questionForm.invalid" (click)="saveAnswer()">Save</button>
+      </form>
+    </div>
+    <button class="back" routerLink="../">Back to Question Manager</button>
+  </div>
+</div>

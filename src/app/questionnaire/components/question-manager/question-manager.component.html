@@ -1,0 +1,12 @@
+<div class="question-manager">
+  <div class="container">
+    <div class="question-manager__block">
+      <div class="add-question">
+        <button class="add-question__button" routerLink="./new">Add question</button>
+      </div>
+      <app-question-manager-list [questions]="questions"
+                                 (deleteQuestion)="deleteQuestion($event)">
+      </app-question-manager-list>
+    </div>
+  </div>
+</div>

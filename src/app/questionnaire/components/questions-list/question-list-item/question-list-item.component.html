@@ -1,0 +1,58 @@
+<div class="question">
+  <div class="question__title">{{ question.title }}</div>
+  <div class="question__answers" [formGroup]="form">
+    <div *ngIf="question.type === 'single'" class="single-question__answers">
+      <ng-container *ngIf="!question.answered">
+        <select class="multiple-select" formControlName="singleAnswer">
+          <option *ngFor="let answer of question.answers" [value]="answer.text">{{ answer.text }}</option>
+        </select>
+        <button class="apply-button"
+                (click)="onApplyAnswer()"
+                *ngIf="!form.get('singleAnswer').invalid">
+          Apply answer
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="question.answered">
+        <div class="question__answer">{{ question.finalAnswer }}</div>
+        <button class="rollback-button" (click)="onRollbackQuestion()">Rollback the question</button>
+      </ng-container>
+    </div>
+
+    <div *ngIf="question.type === 'multiple'" class="multiple-question__answers">
+      <ng-container *ngIf="!question.answered">
+        <select *ngIf="!question.answered" class="multiple-select" formControlName="multipleAnswer" multiple>
+          <option *ngFor="let answer of question.answers" [value]="{ text: answer.text }">{{ answer.text }}</option>
+        </select>
+        <button class="apply-button"
+                (click)="onApplyAnswer()"
+                *ngIf="!form.get('multipleAnswer').invalid">
+          Apply answer
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="question.answered">
+        <div class="question__answer" *ngFor="let answer of question.finalMultipleAnswer">
+          {{ answer.text }}
+        </div>
+        <button class="rollback-button" (click)="onRollbackQuestion()">Rollback the question</button>
+      </ng-container>
+    </div>
+
+    <div *ngIf="question.type === 'open'" class="open-question__answers">
+      <ng-container *ngIf="!question.answered">
+        <textarea class="comment" formControlName="openAnswer"></textarea>
+        <button class="apply-button"
+                (click)="onApplyAnswer()"
+                *ngIf="!form.get('openAnswer').invalid">
+          Apply answer
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="question.answered">
+        <div class="question__answer">{{ question.finalAnswer }}</div>
+        <button class="rollback-button" (click)="onRollbackQuestion()">Rollback the question</button>
+      </ng-container>
+    </div>
+  </div>
+</div>

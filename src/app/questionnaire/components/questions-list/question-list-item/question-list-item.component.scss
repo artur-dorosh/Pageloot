@@ -1,0 +1,49 @@
+@import "src/assets/styles/variables";
+
+.question {
+  margin-bottom: 20px;
+  padding: 15px 0;
+  text-align: center;
+  border: 2px solid $color-grey-20;
+  border-radius: 4px;
+
+  &__title {
+    margin-bottom: 10px;
+    padding: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .multiple-select {
+    width: 80%;
+  }
+
+  .comment {
+    width: 80%;
+    height: 100px;
+  }
+
+  .apply-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: $color-white-100;
+    background-color: $color-main-green;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .rollback-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: $color-white-100;
+    background-color: $color-danger;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+  }
+}

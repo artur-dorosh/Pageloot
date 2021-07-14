@@ -1,0 +1,8 @@
+<div class="question-list">
+  <div class="question-list__block">
+    <app-question-manager-list-item *ngFor="let question of questions | orderBy"
+                                    [question]="question"
+                                    (delete)="onDeleteQuestion($event)">
+    </app-question-manager-list-item>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="answered-list">
+  <div class="answered-list__block">
+    <app-question-list-item *ngFor="let question of questions | orderBy:'answeredDate'"
+                            [question]="question"
+                            (applyAnswer)="onApplyAnswer($event)"
+                            (rollbackQuestion)="onRollbackQuestion($event)">
+    </app-question-list-item>
+  </div>
+</div>

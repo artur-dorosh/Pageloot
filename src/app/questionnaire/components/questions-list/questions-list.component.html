@@ -1,0 +1,20 @@
+<div class="question-list">
+  <div class="container">
+    <div class="question-list__block">
+      <div class="unanswered-list">
+        <p class="list-title">Unanswered List</p>
+        <app-unanswered-list [questions]="questions | isAnswered:false"
+                             (applyAnswer)="changeAnswer($event)"
+                             (rollbackQuestion)="changeAnswer($event)">
+        </app-unanswered-list>
+      </div>
+      <div class="answered-list">
+        <p class="list-title">Answered List</p>
+        <app-answered-list [questions]="questions | isAnswered"
+                           (applyAnswer)="changeAnswer($event)"
+                           (rollbackQuestion)="changeAnswer($event)">
+        </app-answered-list>
+      </div>
+    </div>
+  </div>
+</div>

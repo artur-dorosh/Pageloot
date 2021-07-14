@@ -1,0 +1,52 @@
+@import "src/assets/styles/variables";
+
+:host {
+  width: 100%;
+}
+
+.question {
+  margin-bottom: 20px;
+  padding: 15px 0;
+  text-align: center;
+  border: 2px solid $color-grey-20;
+  border-radius: 4px;
+
+  &__title {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  &__description {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .delete-button,
+  .edit-button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: $color-grey-10;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .delete-button {
+    margin-right: 20px;
+    background-color: $color-danger;
+  }
+
+  .edit-button {
+    background-color: $color-gold;
+  }
+}
