@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IQuestion } from '../../../interfaces/question.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-question-list-item',
   templateUrl: './question-list-item.component.html',
-  styleUrls: ['./question-list-item.component.scss']
+  styleUrls: ['./question-list-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuestionListItemComponent implements OnInit {
   @Input() question: IQuestion;

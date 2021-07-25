@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UnansweredListComponent } from './unanswered-list.component';
+import { QuestionListComponent } from './question-list.component';
 
-describe('UnansweredListComponent', () => {
-  let component: UnansweredListComponent;
-  let fixture: ComponentFixture<UnansweredListComponent>;
+describe('QuestionListComponent', () => {
+  let component: QuestionListComponent;
+  let fixture: ComponentFixture<QuestionListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UnansweredListComponent ]
+      declarations: [ QuestionListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UnansweredListComponent);
+    fixture = TestBed.createComponent(QuestionListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

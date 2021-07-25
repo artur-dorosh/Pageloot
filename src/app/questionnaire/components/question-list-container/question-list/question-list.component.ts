@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { IQuestion } from '../../../interfaces/question.interface';
 
 @Component({
-  selector: 'app-unanswered-list',
-  templateUrl: './unanswered-list.component.html',
-  styleUrls: ['./unanswered-list.component.scss']
+  selector: 'app-question-list',
+  templateUrl: './question-list.component.html',
+  styleUrls: ['./question-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UnansweredListComponent {
+export class QuestionListComponent {
   @Input() questions: IQuestion[];
 
   @Output() applyAnswer: EventEmitter<IQuestion> = new EventEmitter<IQuestion>();
