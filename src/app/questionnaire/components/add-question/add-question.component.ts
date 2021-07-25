@@ -32,8 +32,6 @@ export class AddQuestionComponent implements OnInit, OnDestroy {
     this.initForm();
     this.initFormValue();
     this.trackQuestionType();
-
-    this.questionForm.valueChanges.subscribe(vl => console.log(vl));
   }
 
   addNewAnswer(): void {
