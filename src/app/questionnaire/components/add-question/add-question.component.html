@@ -19,8 +19,8 @@
         </div>
         <div *ngIf="questionForm.get('type').value !== 'open'">
           <div formArrayName="answers" *ngFor="let answer of questionForm.get('answers')['controls']; let i = index;">
-            <div [formGroup]="answer" class="add-question__answers-block">
-              <input type="text" formControlName="text" class="add-question__answer" placeholder="Answer...">
+            <div class="add-question__answers-block">
+              <input type="text" [formControl]="answer" class="add-question__answer" placeholder="Answer...">
               <button class="answer__delete-button"
                       (click)="deleteAnswer(i)"
                       [disabled]="questionForm.get('answers').value.length <= 2">

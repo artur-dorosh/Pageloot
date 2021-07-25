@@ -26,11 +26,10 @@ export class QuestionListItemComponent implements OnInit {
     this.applyAnswer.emit({
       ...this.question,
       finalAnswer: this.question.type === 'single'
-        ? this.form.get('singleAnswer').value
+        ? [this.form.get('singleAnswer').value]
         : this.question.type === 'open'
-          ? this.form.get('openAnswer').value
-          : null,
-      finalMultipleAnswer: this.question.type === 'multiple' ? this.form.get('multipleAnswer').value : null,
+          ? [this.form.get('openAnswer').value]
+          : this.form.get('multipleAnswer').value,
       answered: true,
       answeredDate: new Date().toString(),
     })

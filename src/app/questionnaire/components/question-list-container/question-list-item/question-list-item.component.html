@@ -4,7 +4,7 @@
     <div *ngIf="question.type === 'single'" class="single-question__answers">
       <ng-container *ngIf="!question.answered">
         <select class="multiple-select" formControlName="singleAnswer">
-          <option *ngFor="let answer of question.answers" [value]="answer.text">{{ answer.text }}</option>
+          <option *ngFor="let answer of question.answers" [value]="answer">{{ answer }}</option>
         </select>
         <button class="apply-button"
                 (click)="onApplyAnswer()"
@@ -14,7 +14,9 @@
       </ng-container>
 
       <ng-container *ngIf="question.answered">
-        <div class="question__answer">{{ question.finalAnswer }}</div>
+        <div class="question__answer" *ngFor="let answer of question.finalAnswer">
+          {{ answer }}
+        </div>
         <button class="rollback-button" (click)="onRollbackQuestion()">Rollback the question</button>
       </ng-container>
     </div>
@@ -22,7 +24,7 @@
     <div *ngIf="question.type === 'multiple'" class="multiple-question__answers">
       <ng-container *ngIf="!question.answered">
         <select *ngIf="!question.answered" class="multiple-select" formControlName="multipleAnswer" multiple>
-          <option *ngFor="let answer of question.answers" [value]="{ text: answer.text }">{{ answer.text }}</option>
+          <option *ngFor="let answer of question.answers" [value]="answer">{{ answer }}</option>
         </select>
         <button class="apply-button"
                 (click)="onApplyAnswer()"
@@ -32,8 +34,8 @@
       </ng-container>
 
       <ng-container *ngIf="question.answered">
-        <div class="question__answer" *ngFor="let answer of question.finalMultipleAnswer">
-          {{ answer.text }}
+        <div class="question__answer" *ngFor="let answer of question.finalAnswer">
+          {{ answer }}
         </div>
         <button class="rollback-button" (click)="onRollbackQuestion()">Rollback the question</button>
       </ng-container>
@@ -50,7 +52,9 @@
       </ng-container>
 
       <ng-container *ngIf="question.answered">
-        <div class="question__answer">{{ question.finalAnswer }}</div>
+        <div class="question__answer" *ngFor="let answer of question.finalAnswer">
+          {{ answer }}
+        </div>
         <button class="rollback-button" (click)="onRollbackQuestion()">Rollback the question</button>
       </ng-container>
     </div>

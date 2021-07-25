@@ -10,7 +10,7 @@ const questions: IQuestion[] = [
     createdDate: '2021-07-14',
     answered: false,
     answeredDate: null,
-    answers: [{ text: 'Simple answer' }, { text: 'Another answer' }],
+    answers: ['Simple answer', 'Another answer'],
     finalAnswer: null,
   }, {
     id: '2',
@@ -19,7 +19,7 @@ const questions: IQuestion[] = [
     createdDate: '2021-07-13',
     answered: false,
     answeredDate: null,
-    answers: [{ text: 'First' }, { text: 'Second' }],
+    answers: ['First', 'Second'],
     finalAnswer: null,
   }, {
     id: '3',
@@ -37,8 +37,8 @@ const questions: IQuestion[] = [
     createdDate: '2021-07-10',
     answered: true,
     answeredDate: '2021-07-08',
-    answers: [{ text: 'First' }, { text: 'Second' }, { text: 'Third' }],
-    finalMultipleAnswer: [{ text: 'First' }, { text: 'Second' }],
+    answers: ['First', 'Second', 'Third'],
+    finalAnswer: ['First', 'Second'],
   }, {
     id: '5',
     title: 'Is it answered single choice question?',
@@ -46,17 +46,17 @@ const questions: IQuestion[] = [
     createdDate: '2021-06-26',
     answered: true,
     answeredDate: '2021-07-01',
-    answers: [{ text: 'Simple answer' }, { text: 'Another answer' }],
-    finalAnswer: 'Another answer',
+    answers: ['Simple answer', 'Another answer'],
+    finalAnswer: ['Another answer'],
   }, {
     id: '6',
-    title: 'Is it open question?',
+    title: 'Is it open answered question?',
     type: 'open',
     createdDate: '2021-07-04',
     answered: true,
     answeredDate: '2021-07-06',
     answers: null,
-    finalAnswer: 'Simple answer to open question',
+    finalAnswer: ['Simple answer to open question'],
   }
 ]
 

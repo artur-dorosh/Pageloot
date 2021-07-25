@@ -1,5 +1,3 @@
-import { IAnswer } from './answer.interface';
-
 export interface IQuestion {
   id: string;
   title: string;
@@ -7,7 +5,6 @@ export interface IQuestion {
   createdDate: string;
   answered: boolean;
   answeredDate: string;
-  answers: IAnswer[];
-  finalAnswer?: string;
-  finalMultipleAnswer?: IAnswer[];
+  answers: string[];
+  finalAnswer: string[];
 }

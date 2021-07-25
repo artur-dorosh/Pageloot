@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionsService } from '../../services/questions.service';
 import { v4 as uuidv4 } from 'uuid';
@@ -32,6 +32,8 @@ export class AddQuestionComponent implements OnInit, OnDestroy {
     this.initForm();
     this.initFormValue();
     this.trackQuestionType();
+
+    this.questionForm.valueChanges.subscribe(vl => console.log(vl));
   }
 
   addNewAnswer(): void {
@@ -87,7 +89,7 @@ export class AddQuestionComponent implements OnInit, OnDestroy {
 
       if (this.currentQuestion.answers) {
         for (const answer of this.currentQuestion.answers) {
-          this.answersArray.push(this.createOption(answer.text))
+          this.answersArray.push(this.createOption(answer))
         }
       }
     }
@@ -105,9 +107,7 @@ export class AddQuestionComponent implements OnInit, OnDestroy {
     })
   }
 
-  private createOption(value?: string): FormGroup {
-    return this.fb.group({
-      text: [value || null, Validators.required]
-    });
+  private createOption(value?: string): FormControl {
+    return new FormControl(value || null, Validators.required);
   }
 }
