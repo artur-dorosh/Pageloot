@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { IQuestion } from '../../interfaces/question.interface';
 import { QuestionsService } from '../../services/questions.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-question-manager',
@@ -9,12 +10,11 @@ import { QuestionsService } from '../../services/questions.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuestionManagerComponent {
-  questions: IQuestion[] = this.questionsService.getQuestions();
+  questions$: Observable<IQuestion[]> = this.questionsService.getQuestions();
 
   constructor(private questionsService: QuestionsService) { }
 
   deleteQuestion(id: string): void {
-    this.questions = this.questions.filter((question: IQuestion) => question.id !== id);
-    this.questionsService.setQuestions(this.questions);
+    this.questionsService.deleteQuestion(id);
   }
 }

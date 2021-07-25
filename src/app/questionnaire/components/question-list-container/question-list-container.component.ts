@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { IQuestion } from '../../interfaces/question.interface';
 import { QuestionsService } from '../../services/questions.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-question-list-container',
@@ -9,13 +10,12 @@ import { QuestionsService } from '../../services/questions.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuestionListContainerComponent {
-  questions: IQuestion[] = [];
+  questions$: Observable<IQuestion[]> = this.questionsService.getQuestions();
 
   constructor(private questionsService: QuestionsService) { }
 
   changeAnswer(question: IQuestion): void {
-    this.questions = this.questions.map((item: IQuestion) => item.id === question.id ? question : item);
-    this.questionsService.setQuestions(this.questions);
+    this.questionsService.updateQuestion(question);
   }
 
 }

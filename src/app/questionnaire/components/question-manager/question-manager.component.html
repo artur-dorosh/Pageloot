@@ -4,7 +4,7 @@
       <div class="add-question">
         <button class="add-question__button" routerLink="./new">Add question</button>
       </div>
-      <app-question-manager-list [questions]="questions"
+      <app-question-manager-list [questions]="questions$ | async"
                                  (deleteQuestion)="deleteQuestion($event)">
       </app-question-manager-list>
     </div>

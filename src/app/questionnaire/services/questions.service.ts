@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IQuestion } from '../interfaces/question.interface';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 const questions: IQuestion[] = [
   {
@@ -63,18 +64,39 @@ const questions: IQuestion[] = [
   providedIn: 'root'
 })
 export class QuestionsService {
+  private questions$: BehaviorSubject<IQuestion[]> = new BehaviorSubject<IQuestion[]>(null);
 
   initData(): void {
-    if (!localStorage.getItem('questions')) {
-      localStorage.setItem('questions', JSON.stringify(questions));
-    }
+    localStorage.getItem('questions')
+      ? this.questions$.next(JSON.parse(localStorage.getItem('questions')))
+      : this.setQuestions(questions);
   }
 
-  getQuestions(): IQuestion[] {
-    return JSON.parse(localStorage.getItem('questions'));
+  getQuestions(): Observable<IQuestion[]> {
+    return this.questions$.asObservable();
+  }
+
+  getQuestionById(id: string): IQuestion {
+    return this.questions$.getValue().find((question: IQuestion) => question.id === id);
   }
 
   setQuestions(value: IQuestion[]): void {
     localStorage.setItem('questions', JSON.stringify(value));
+    this.questions$.next(value);
+  }
+
+  updateQuestion(question: IQuestion): void {
+    this.setQuestions(this.questions$.getValue().map((item: IQuestion) => item.id === question.id ? question : item));
+  }
+
+  createQuestion(value: IQuestion): void {
+    const currentQuestions: IQuestion[] = this.questions$.getValue();
+    currentQuestions.push(value);
+
+    this.setQuestions(currentQuestions);
+  }
+
+  deleteQuestion(id: string): void {
+    this.setQuestions(this.questions$.getValue().filter((question: IQuestion) => question.id !== id));
   }
 }

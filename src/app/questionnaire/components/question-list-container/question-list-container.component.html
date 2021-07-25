@@ -3,14 +3,14 @@
     <div class="question-list__block">
       <div class="unanswered-list">
         <p class="list-title">Unanswered List</p>
-        <app-question-list [questions]="questions | isAnswered:false"
+        <app-question-list [questions]="(questions$ | async) | isAnswered:false"
                              (applyAnswer)="changeAnswer($event)"
                              (rollbackQuestion)="changeAnswer($event)">
         </app-question-list>
       </div>
       <div class="answered-list">
         <p class="list-title">Answered List</p>
-        <app-question-list [questions]="questions | isAnswered"
+        <app-question-list [questions]="(questions$ | async) | isAnswered"
                            (applyAnswer)="changeAnswer($event)"
                            (rollbackQuestion)="changeAnswer($event)">
         </app-question-list>

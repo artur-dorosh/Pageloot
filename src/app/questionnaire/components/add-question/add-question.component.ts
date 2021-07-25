@@ -17,8 +17,7 @@ export class AddQuestionComponent implements OnInit, OnDestroy {
   questionForm: FormGroup;
   answersArray: FormArray;
 
-  questions: IQuestion[] = this.questionsService.getQuestions();
-  currentQuestion: IQuestion = this.questions.find((item: IQuestion) => item.id === this.route.snapshot.params.id);
+  currentQuestion: IQuestion = this.questionsService.getQuestionById(this.route.snapshot.params.id);
 
   private onDestroy$: Subject<void> = new Subject<void>();
 
@@ -53,16 +52,14 @@ export class AddQuestionComponent implements OnInit, OnDestroy {
     }
 
     if (this.currentQuestion) {
-      this.questions = this.questions.map((item: IQuestion) => item.id === this.currentQuestion.id ? {
+      this.questionsService.updateQuestion({
         ...this.currentQuestion,
         ...this.questionForm.value,
         createdDate: new Date(),
-      } : item);
+      });
     } else {
-      this.questions.push(question);
+      this.questionsService.createQuestion(question);
     }
-
-    this.questionsService.setQuestions(this.questions);
 
     this.router.navigate(['../']);
   }
@@ -87,8 +84,11 @@ export class AddQuestionComponent implements OnInit, OnDestroy {
 
     if (this.currentQuestion) {
       this.questionForm.patchValue(this.currentQuestion);
-      for (const answer of this.currentQuestion.answers) {
-        this.answersArray.push(this.createOption(answer.text))
+
+      if (this.currentQuestion.answers) {
+        for (const answer of this.currentQuestion.answers) {
+          this.answersArray.push(this.createOption(answer.text))
+        }
       }
     }
   }
